@@ -1,0 +1,12 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-pod
+spec:
+  containers:
+  - image: lesteven/node2
+    name: node2
+    ports:
+    - containerPort: 3000
+      protocol: TCP
