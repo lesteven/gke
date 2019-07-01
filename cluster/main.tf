@@ -3,13 +3,13 @@ provider "google" {
   credentials = "${var.json}"
   project = "${var.project}"
   region = "us-west2"
-  zone = "us-west2-a"
 }
 
 resource "google_container_cluster" "primary" {
   name = "gkecluster"
   remove_default_node_pool = true
   initial_node_count = 1
+  location = "us-west2"
 
   master_auth {
     username = ""
@@ -25,6 +25,7 @@ resource "google_container_node_pool" "gkepool" {
   name = "gkepool"
   cluster = "${google_container_cluster.primary.name}"
   node_count = 1
+  location = "us-west2"
 
   node_config {
     preemptible = true
