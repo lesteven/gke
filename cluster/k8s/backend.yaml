@@ -3,6 +3,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: backend-pod
+  labels:
+    rel: beta
+    app: backend
 spec:
   containers:
   - image: lesteven/node2
