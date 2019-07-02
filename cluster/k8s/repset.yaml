@@ -1,11 +1,12 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
-  name: repcon
+  name: repset
 spec:
   replicas: 5
   selector:
-    app: hello
+    matchLabels:
+      app: hello
   template:
     metadata:
       labels:
