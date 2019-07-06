@@ -1,10 +1,13 @@
-resource "google_compute_instance" "postgres" {
-  name = "postgres"
+resource "google_compute_instance" "bastion" {
+  name = "bastion"
   machine_type = "n1-standard-1"
   zone = "us-west2-a"
   
   network_interface {
     network = "${google_compute_network.vpc.name}" 
+    access_config {
+      nat_ip = "${google_compute_address.bastion_ip.address}"
+    }
   }
   boot_disk {
     initialize_params {
@@ -18,3 +21,6 @@ resource "google_compute_instance" "postgres" {
   }
 }
 
+resource "google_compute_address" "bastion_ip" {
+  name = "bastion-ip"
+}
