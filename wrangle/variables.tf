@@ -1,0 +1,2 @@
+variable "json" {}
+variable "project" {}
