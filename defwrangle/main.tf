@@ -15,6 +15,16 @@ resource "google_compute_firewall" "db" {
   source_tags = ["postgres"]
 }
 
+resource "google_compute_firewall" "es" {
+  name = "es"
+  network = "default"
+  allow {
+    protocol = "tcp"
+    ports = ["9200"]
+  }
+  source_tags = ["elasticsearch"]
+}
+
 resource "google_compute_router" "router" {
   name = "router"
   network = "default"

@@ -1,15 +1,12 @@
-resource "google_compute_instance" "bastion" {
-  name = "bastion"
+resource "google_compute_instance" "elasticsearch" {
+  name = "elasticsearch"
   machine_type = "n1-standard-1"
   zone = "us-west2-a"
-
-  tags = ["bastion"]
   
+  tags = ["elasticsearch"]
+
   network_interface {
     network = "default" 
-    access_config {
-      nat_ip = "${google_compute_address.bastion_ip.address}"
-    }
   }
   boot_disk {
     initialize_params {
@@ -21,26 +18,22 @@ resource "google_compute_instance" "bastion" {
     preemptible = true
     automatic_restart = false
   }
-/*
   provisioner "file" {
-    source = "./scripts"
-    destination = "./"
+    source = "./scripts/setupES.sh"
+    destination = "/tmp/setupES.sh"
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x ./scripts/setupPostgres.sh",
-      "sudo ./scripts/setupPostgres.sh",
+      "chmod +x /tmp/setupES.sh",
+      "/tmp/setupES.sh",
     ]
   }
   connection {
     type = "ssh"
     user = "${var.user}"
-    host = "${google_compute_address.bastion_ip.address}"
+    host = "${self.network_interface.0.network_ip}"
+    bastion_host = "${google_compute_address.bastion_ip.address}"
     private_key = "${file("~/.ssh/google_compute_engine")}"
   }
-*/
 }
 
-resource "google_compute_address" "bastion_ip" {
-  name = "bastion-ip"
-}
