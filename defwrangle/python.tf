@@ -19,6 +19,22 @@ resource "google_compute_instance" "bastion" {
     preemptible = true
     automatic_restart = false
   }
+  provisioner "file" {
+    source = "./scripts"
+    destination = "./"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x ./scripts/setupPostgres.sh",
+      "sudo ./scripts/setupPostgres.sh",
+    ]
+  }
+  connection {
+    type = "ssh"
+    user = "${var.user}"
+    host = "${google_compute_address.bastion_ip.address}"
+    private_key = "${file("~/.ssh/google_compute_engine")}"
+  }
 }
 
 resource "google_compute_address" "bastion_ip" {

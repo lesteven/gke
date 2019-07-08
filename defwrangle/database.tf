@@ -17,13 +17,16 @@ resource "google_compute_instance" "postgres" {
     automatic_restart = false
   }
   provisioner "file" {
-    source = "./scripts/setupPostgres.sh"
-    destination = "/tmp/setupPostgres.sh"
+    source = "./scripts"
+    destination = "./"
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/setupPostgres.sh",
-      "/tmp/setupPostgres.sh",
+      "chmod +x ./scripts/setupPostgres.sh",
+      "sudo ./scripts/setupPostgres.sh",
+      "chmod +x ./scripts/configPostgres.sh",
+      "sudo ./scripts/configPostgres.sh",
+      "sudo -u postgres psql < ./scripts/userdb.sql",
     ]
   }
   connection {
