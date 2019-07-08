@@ -2,6 +2,8 @@ resource "google_compute_instance" "bastion" {
   name = "bastion"
   machine_type = "n1-standard-1"
   zone = "us-west2-a"
+
+  tags = ["bastion"]
   
   network_interface {
     network = "${google_compute_network.vpc.name}" 

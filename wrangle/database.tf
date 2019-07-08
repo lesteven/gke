@@ -2,7 +2,9 @@ resource "google_compute_instance" "postgres" {
   name = "postgres"
   machine_type = "n1-standard-1"
   zone = "us-west2-a"
-  
+
+  tags = ["postgres"]
+
   network_interface {
     network = "${google_compute_network.vpc.name}" 
   }
