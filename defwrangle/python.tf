@@ -31,8 +31,10 @@ resource "google_compute_instance" "bastion" {
   }
   provisioner "remote-exec" {
     inline = [
+      "chmod +x ./scripts/installEs.sh",
+      "./scripts/installEs.sh",
       "chmod +x ./scripts/setupPostgres.sh",
-      "sudo ./scripts/setupPostgres.sh",
+      "./scripts/setupPostgres.sh",
     ]
   }
   connection {
