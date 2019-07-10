@@ -3,7 +3,7 @@
 # install and configure postgresql
 cd scripts
 chmod +x ./setupPostgres.sh
-chmod +x ./configPosgres.sh
+chmod +x ./configPostgres.sh
 ./setupPostgres.sh
 ./configPostgres.sh
 
