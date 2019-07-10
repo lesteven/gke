@@ -7,4 +7,3 @@ sudo apt-get install libpq-dev -y
 pip install psycopg2
 pip install elasticsearch
 
-python2 transform.py

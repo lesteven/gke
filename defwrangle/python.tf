@@ -35,6 +35,8 @@ resource "google_compute_instance" "bastion" {
       "./scripts/installEs.sh",
       "chmod +x ./scripts/setupPostgres.sh",
       "./scripts/setupPostgres.sh",
+      "chmod +x ./scripts/bastion.sh",
+      "./scripts/bastion.sh",
     ]
   }
   connection {
