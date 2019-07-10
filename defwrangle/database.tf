@@ -38,5 +38,6 @@ resource "google_compute_instance" "postgres" {
     bastion_host = "${google_compute_address.bastion_ip.address}"
     private_key = "${file("~/.ssh/google_compute_engine")}"
   }
+  depends_on = ["google_compute_instance.bastion"]
 }
 
