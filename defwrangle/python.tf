@@ -21,9 +21,12 @@ resource "google_compute_instance" "bastion" {
     preemptible = true
     automatic_restart = false
   }
-/*
   provisioner "file" {
     source = "./scripts"
+    destination = "./"
+  }
+  provisioner "file" {
+    source = "./bastion"
     destination = "./"
   }
   provisioner "remote-exec" {
@@ -38,7 +41,6 @@ resource "google_compute_instance" "bastion" {
     host = "${google_compute_address.bastion_ip.address}"
     private_key = "${file("~/.ssh/google_compute_engine")}"
   }
-*/
 }
 
 resource "google_compute_address" "bastion_ip" {
