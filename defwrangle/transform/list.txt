@@ -1,0 +1,4 @@
+NAME           ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP  STATUS
+bastion        us-west2-a  n1-standard-1  true         10.168.0.33  34.94.1.136  RUNNING
+elasticsearch  us-west2-a  n1-standard-1  true         10.168.0.35               RUNNING
+postgres       us-west2-a  n1-standard-1  true         10.168.0.36               RUNNING
