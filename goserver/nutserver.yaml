@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: gors
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nutserver
+  template:
+    metadata:
+      labels:
+        app: nutserver
+    spec:
+      hostNetwork: true
+      containers:
+      - name: nutserver-app
+        image: lesteven/nutserver
+        envFrom:
+        - configMapRef:
+            name: my-config
+        ports:
+        - containerPort: 8080
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: golb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: nutserver
