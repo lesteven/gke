@@ -19,13 +19,13 @@ resource "google_compute_instance" "elasticsearch" {
     automatic_restart = false
   }
   provisioner "file" {
-    source = "./scripts/setupES.sh"
-    destination = "/tmp/setupES.sh"
+    source = "./scripts"
+    destination = "./"
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/setupES.sh",
-      "/tmp/setupES.sh",
+      "chmod +x ./scripts/setupES.sh",
+      "sudo ./scripts/setupES.sh",
     ]
   }
   connection {
