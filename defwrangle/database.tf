@@ -2,6 +2,8 @@ resource "google_compute_instance" "postgres" {
   name = "postgres"
   machine_type = "n1-standard-1"
   zone = "us-west2-a"
+
+  tags = ["postgres"]
   
   network_interface {
     network = "default" 
@@ -22,11 +24,11 @@ resource "google_compute_instance" "postgres" {
   }
   provisioner "remote-exec" {
     inline = [
-      "chmod +x ./scripts/setupPostgres.sh",
-      "sudo ./scripts/setupPostgres.sh",
-      "chmod +x ./scripts/configPostgres.sh",
-      "sudo ./scripts/configPostgres.sh",
-      "sudo -u postgres psql < ./scripts/userdb.sql",
+      "chmod +x ./scripts/postgres.sh",
+      "sudo ./scripts/postgres.sh",
+      "cd sampleData/psql",
+      "chmod +x init.sh",
+      "./init.sh",
     ]
   }
   connection {
