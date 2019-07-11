@@ -4,6 +4,9 @@ cd "$(dirname "$0")"
 
 ip=$(gcloud compute instances list | grep elasticsearch | awk '{print $5}')
 echo "$ip"
-address="http://"$ip""
+
+address=http://"$ip":9200
 echo "$address"
-echo "$address" > env.conf
+echo "ADDRESS=$address" > env.properties
+
+kubectl create configmap my-config --from-env-file=env.properties

@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: gors
+  name: nutriset
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: nutserver
@@ -15,7 +15,7 @@ spec:
       hostNetwork: true
       containers:
       - name: nutserver-app
-        image: lesteven/nutserver
+        image: lesteven/nutserver:dev
         envFrom:
         - configMapRef:
             name: my-config
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: golb
+  name: nutriservice
 spec:
   type: LoadBalancer
   ports:
