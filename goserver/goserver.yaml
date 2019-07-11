@@ -12,6 +12,7 @@ spec:
       labels:
         app: goserver
     spec:
+      hostNetwork: true
       containers:
       - name: goserver-app
         image: lesteven/goserver
