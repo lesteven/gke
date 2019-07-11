@@ -5,7 +5,3 @@ echo "$ip"
 
 curl "$ip"
 
-curl "$ip"/elastic \
-    -H 'Content-Type: application/json' \
-    -d '{"search": "mochi"}' \
-    -v

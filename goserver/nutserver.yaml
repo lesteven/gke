@@ -15,7 +15,7 @@ spec:
       hostNetwork: true
       containers:
       - name: nutserver-app
-        image: lesteven/nutserver:dev
+        image: lesteven/nutserver
         envFrom:
         - configMapRef:
             name: my-config
