@@ -2,6 +2,9 @@
 *.config
 ip.txt
 githubKey
+sampleData
+env.conf
+env.properties
 
 # Local .terraform directories
 **/.terraform/*
@@ -31,3 +34,6 @@ override.tf.json
 # Include override files you do wish to add to version control using negated pattern
 #
 # !example_override.tf
+
+#python
+__pycache__

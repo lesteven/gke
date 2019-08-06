@@ -10,4 +10,5 @@ cd "$(dirname "$0")/$dir"
 terraform init
 printf yes | terraform apply
 
+cd ..
 source getCredentials.sh
